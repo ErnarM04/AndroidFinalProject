@@ -76,6 +76,7 @@ class FirstFragment:Fragment(R.layout.fragment_first) {
                         booksList = list.map { it }
                     )
                 }
+                println(adapter.itemCount)
             }
 
             override fun onFailure(call: Call<ApiResponse>, t: Throwable) {

@@ -21,8 +21,6 @@ class HomeAdapter(): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
         books.clear()
         books.addAll(booksList)
         diffResult.dispatchUpdatesTo(this)
-        println("ADAPTER")
-        println(books)
     }
 
     inner class ViewHolder(
@@ -33,7 +31,8 @@ class HomeAdapter(): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
         fun bind(book: Book) {
 
             with(binding) {
-                Glide.with(context).load(book.volumeInfo.imageLinks.smallThumbnail).into(cover)
+                val coverLink = book.volumeInfo.imageLinks.thumbnail
+                Glide.with(context).load(coverLink.slice(0..3)+"s"+coverLink.slice(4..coverLink.length-1)).into(cover)
                 title.text = book.volumeInfo.title
                 description.text = book.volumeInfo.description
             }
