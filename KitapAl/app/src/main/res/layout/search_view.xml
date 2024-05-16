@@ -41,7 +41,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/borderstyle"
-        android:backgroundTint="#ed9b3b"
         android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -1,0 +1,22 @@
+package com.example.kitapal.api
+
+import com.example.kitapal.models.ApiResponse
+import retrofit2.Call
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+object BookApi {
+    private val retrofit = Retrofit.Builder()
+        .baseUrl("https://www.googleapis.com/books/v1/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val instance = retrofit.create(ApiService::class.java)
+
+    interface ApiService {
+        @GET("volumes/")
+        fun getBooks(@Query("q") query: String): Call<ApiResponse>
+    }
+}

@@ -7,14 +7,15 @@
         android:icon="@drawable/home"
         />
     <item
-        android:id="@+id/profile"
-        android:title="Profile"
-        android:icon="@drawable/profile_new"
+        android:id="@+id/favorites"
+        android:title="Favorites"
+        android:icon="@drawable/bookmark"
         />
     <item
-        android:id="@+id/settings"
-        android:title="Settings"
-        android:icon="@drawable/settings"
+        android:id="@+id/profile"
+        android:title="Profile"
+        android:icon="@drawable/profile"
         />
+
 
 </menu>
