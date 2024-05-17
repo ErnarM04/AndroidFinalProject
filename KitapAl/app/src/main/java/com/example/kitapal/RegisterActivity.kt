@@ -18,6 +18,7 @@ import com.example.kitapal.models.User
 class RegisterActivity : AppCompatActivity() {
 
     val userDAO = MainActivity.database.getUserDAO()
+    val cartDAO = MainActivity.database.getCartDAO()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,7 @@ class RegisterActivity : AppCompatActivity() {
             if(filteredList.isEmpty()){
                 MainActivity.loggedIn = true
                 val id = userDAO.findUserByName(username).elementAt(0).id
+
                 MainActivity.user = User(id = id, username = username, email = email, password = password)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

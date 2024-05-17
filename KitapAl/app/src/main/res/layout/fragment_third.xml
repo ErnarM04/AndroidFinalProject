@@ -88,7 +88,7 @@
         android:layout_marginTop="270dp"
         android:text="Change personal infornations"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.568"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -104,5 +104,19 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/remove"
+        android:layout_width="235dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:background="@color/red"
+        android:text="Remove account"
+        android:textSize="18dp"
+        app:flow_horizontalBias="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

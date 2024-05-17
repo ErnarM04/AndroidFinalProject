@@ -20,6 +20,9 @@ interface UserDAO {
     @androidx.room.Query("SELECT * FROM USER WHERE username = :username")
     fun findUserByName(username: String) : List<User>
 
+    @androidx.room.Query("SELECT * FROM USER WHERE id = :id")
+    fun findUserById(id: Int) : List<User>
+
     @androidx.room.Query("UPDATE USER SET username = :username, email = :email, password = :password WHERE id = :id")
     fun updateUser(id: Int, username: String, email: String, password: String)
 

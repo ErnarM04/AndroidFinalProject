@@ -10,42 +10,24 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="95dp"
+        android:layout_height="670dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/searchView"
+        app:layout_constraintVertical_bias="0.04" />
 
-    <EditText
-        android:id="@+id/search_bar"
-        android:layout_width="250dp"
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="360dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="95dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/borderstyle"
-        android:text="Search"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="30dp"
+        android:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toEndOf="@+id/search_bar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

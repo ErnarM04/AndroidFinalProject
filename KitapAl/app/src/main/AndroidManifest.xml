@@ -9,9 +9,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo_baw"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo_baw"
+        android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.KitapAl"
         tools:targetApi="31">
@@ -20,6 +20,9 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SearchActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

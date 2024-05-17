@@ -1,4 +1,5 @@
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -46,6 +47,13 @@ class ThirdFragment:Fragment(R.layout.fragment_third) {
         logoutButton.setOnClickListener {
             MainActivity.user = User(0, "", "", "")
             MainActivity.loggedIn = false
+            val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        val removeButton = view.findViewById<Button>(R.id.remove)
+        removeButton.setOnClickListener {
+            val intent = Intent(context, MainActivity::class.java)
         }
     }
 

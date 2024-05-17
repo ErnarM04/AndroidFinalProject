@@ -1,3 +1,4 @@
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils.replace
 import android.view.LayoutInflater
@@ -37,15 +38,6 @@ class FirstFragment:Fragment(R.layout.fragment_first) {
                               savedInstanceState: Bundle?) : View? {
         _binding = FragmentFirstBinding.inflate(layoutInflater, container, false)
         val view: View = inflater.inflate(R.layout.fragment_first, container, false)
-        val button = view.findViewById<Button>(R.id.button)
-        button.setOnClickListener {
-            val transaction = childFragmentManager.beginTransaction()
-            val searchActivity : SearchActivity = SearchActivity()
-            transaction.replace(R.id.fragmentContainerView, searchActivity)
-            transaction.addToBackStack(null)
-            transaction.commit()
-        }
-
         return _binding?.root
     }
 
@@ -54,6 +46,12 @@ class FirstFragment:Fragment(R.layout.fragment_first) {
 
         val client = BookApi.instance
         val response = client.getBooks("Subject:Fiction")
+
+        val button = view.findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            val intent = Intent(context, SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         setupUI()
 
@@ -67,7 +65,7 @@ class FirstFragment:Fragment(R.layout.fragment_first) {
 
                 var list = response.body()?.books
 
-                list = list?.filter { it.volumeInfo.title != null }
+                list = list?.filter { it.volumeInfo.title != null  && it.saleInfo.listPrice != null}
 
                 println(list)
 
