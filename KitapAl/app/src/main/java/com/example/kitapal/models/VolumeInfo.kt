@@ -9,7 +9,6 @@ data class VolumeInfo(
     val imageLinks: imageLinks,
     val pageCount: Int,
     val categories: List<String>,
-    val language: String,
     val previewLink: String,
     val infoLink: String
 )
@@ -17,4 +16,13 @@ data class VolumeInfo(
 data class imageLinks(
     val thumbnail: String,
     val smallThumbnail: String
+)
+
+data class SaleInfo(
+    val listPrice: ListPrice,
+)
+
+data class ListPrice(
+    val amount: Double,
+    val currencyCode: String
 )
