@@ -48,7 +48,6 @@ class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
                     authorsStr = book.volumeInfo.authors.elementAt(0).toString()
                 }
                 authors.text = authorsStr
-                price.text = "${book.saleInfo.listPrice.amount.toString()}KZT"
                 var categoriesStr: String = ""
                 if(book.volumeInfo.categories.size != 1) {
                     for (category in book.volumeInfo.categories){

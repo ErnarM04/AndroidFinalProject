@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("kotlin-kapt")
 }
 
 android {
@@ -39,6 +40,14 @@ android {
 }
 
 dependencies {
+    val room_version = "2.6.1"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt("androidx.room:room-compiler:$room_version")
+
     implementation("com.google.android.material:material:1.2.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -51,6 +60,7 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("com.google.code.gson:gson:2.9.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

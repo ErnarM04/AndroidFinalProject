@@ -25,13 +25,24 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/back" />
 
+        <ImageView
+            android:id="@+id/bookmark"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:flow_verticalBias="0.5"
+            android:layout_marginEnd="24dp"
+            app:srcCompat="@drawable/bookmark" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="38dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:text="Title"
@@ -41,21 +52,9 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
     <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"
-        android:text="Price"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/cover"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
-
-    <TextView
         android:id="@+id/categories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="24dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="5dp"
         android:text="Categories"
@@ -65,14 +64,14 @@
 
     <TextView
         android:id="@+id/authors"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="170dp"
+        android:layout_height="24dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="5dp"
         android:text="Authors"
         android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/cover"
-        app:layout_constraintTop_toBottomOf="@+id/price" />
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
     <ImageView
         android:id="@+id/cover"
@@ -86,12 +85,13 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="20dp"
         android:text="Description"
         android:textSize="14dp"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cover" />
 

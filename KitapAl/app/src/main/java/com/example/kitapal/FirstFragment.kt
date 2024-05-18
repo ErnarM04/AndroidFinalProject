@@ -10,28 +10,27 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kitapal.BookDetailActivity
 import com.example.kitapal.MainActivity
 import com.example.kitapal.R
 import com.example.kitapal.SearchActivity
 import com.example.kitapal.adapters.HomeAdapter
+import com.example.kitapal.adapters.SearchAdapter
 import com.example.kitapal.api.BookApi
 import com.example.kitapal.databinding.FragmentFirstBinding
 import com.example.kitapal.databinding.SearchViewBinding
 import com.example.kitapal.models.ApiResponse
+import com.example.kitapal.models.Book
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class FirstFragment:Fragment(R.layout.fragment_first) {
 
-    companion object{
-        fun newInstance() = HomeAdapter()
-    }
-
     private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
     private val adapter by lazy {
-        HomeAdapter()
+        HomeAdapter(handleClick = {handleClick(it)})
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -65,7 +64,7 @@ class FirstFragment:Fragment(R.layout.fragment_first) {
 
                 var list = response.body()?.books
 
-                list = list?.filter { it.volumeInfo.title != null  && it.saleInfo.listPrice != null}
+                list = list?.filter { it.volumeInfo.title != null}
 
                 println(list)
 
@@ -92,6 +91,13 @@ class FirstFragment:Fragment(R.layout.fragment_first) {
 
         }
     }
+
+    private fun handleClick(id: String) {
+        val intent = Intent(context, BookDetailActivity::class.java)
+        intent.putExtra("book", id)
+        startActivity(intent)
+    }
+
 
 }
 

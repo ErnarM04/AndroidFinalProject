@@ -1,24 +1,21 @@
 package com.example.kitapal
 
-import FirstFragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.kitapal.models.Favorite
 import com.example.kitapal.models.User
 
 class RegisterActivity : AppCompatActivity() {
 
     val userDAO = MainActivity.database.getUserDAO()
-    val cartDAO = MainActivity.database.getCartDAO()
+    val favoriteDAO = MainActivity.database.getFavoriteDAO()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +37,9 @@ class RegisterActivity : AppCompatActivity() {
             val filteredList = usersList.filter { it.username == username || it.email == email}
             if(filteredList.isEmpty()){
                 MainActivity.loggedIn = true
+                userDAO.addUser(User(username = username, email = email, password = password))
                 val id = userDAO.findUserByName(username).elementAt(0).id
-
+                favoriteDAO.addCart(Favorite(id, ""))
                 MainActivity.user = User(id = id, username = username, email = email, password = password)
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)

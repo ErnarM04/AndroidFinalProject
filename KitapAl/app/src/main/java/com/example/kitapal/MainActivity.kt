@@ -6,26 +6,49 @@ import ThirdFragment
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
-import com.example.kitapal.adapters.HomeAdapter
-import com.example.kitapal.databinding.LoginActivityBinding
+import androidx.lifecycle.lifecycleScope
+import androidx.room.Room
+import androidx.room.migration.Migration
+import com.example.kitapal.database.KitapDB
+import com.example.kitapal.models.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
 
-    public var loggedIn: Boolean = false
     private lateinit var void: Any
+
+    companion object{
+        lateinit var database: KitapDB
+        lateinit var user: User
+        public var loggedIn: Boolean = false
+    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        database = Room.databaseBuilder(
+            applicationContext,
+            KitapDB::class.java,
+            KitapDB.NAME
+        ).allowMainThreadQueries()
+            .fallbackToDestructiveMigration().build()
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO) {
+                val users = database.getUserDAO().getAllUsers()
+                withContext(Dispatchers.Main) {
+                    println("1")
+                    println(users)
+                    println("1")
+                }
+            }
+        }
 
         val firstFragment=FirstFragment()
         val secondFragment=SecondFragment()
@@ -55,9 +78,11 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    public fun setUser(username: String, email: String, password: String){
+        user = User(username = username, email = email, password = password)
+    }
 
-
-    private fun setCurrentFragment(fragment: Fragment)=
+    fun setCurrentFragment(fragment: Fragment)=
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.fragmentContainerView,fragment)
             commit()

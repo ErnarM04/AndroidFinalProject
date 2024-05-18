@@ -53,7 +53,11 @@ class ThirdFragment:Fragment(R.layout.fragment_third) {
 
         val removeButton = view.findViewById<Button>(R.id.remove)
         removeButton.setOnClickListener {
+            userDAO.removeUser(MainActivity.user.id)
+            MainActivity.user = User(0, "", "", "")
+            MainActivity.loggedIn = false
             val intent = Intent(context, MainActivity::class.java)
+            startActivity(intent)
         }
     }
 
