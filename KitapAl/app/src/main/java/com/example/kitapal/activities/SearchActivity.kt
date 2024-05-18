@@ -1,16 +1,14 @@
-package com.example.kitapal
+package com.example.kitapal.activities
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.SearchView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.RoomDatabase
+import com.example.kitapal.R
 import com.example.kitapal.adapters.SearchAdapter
 import com.example.kitapal.api.BookApi
-import com.example.kitapal.databinding.FragmentFirstBinding
 import com.example.kitapal.databinding.SearchViewBinding
 import com.example.kitapal.models.ApiResponse
 import retrofit2.Call
@@ -21,7 +19,7 @@ class SearchActivity : AppCompatActivity() {
 
     private var _binding: SearchViewBinding? = null
     private val binding get() = _binding!!
-    private val adapter by lazy { SearchAdapter() }
+    private val adapter by lazy { SearchAdapter(handleClick = {handleClick(it)}) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +77,12 @@ class SearchActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
             recyclerView.layoutManager = LinearLayoutManager(this@SearchActivity)
         }
+    }
+
+    private fun handleClick(id: String) {
+        val intent = Intent(this, BookDetailActivity::class.java)
+        intent.putExtra("book", id)
+        startActivity(intent)
     }
 
 }

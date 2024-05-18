@@ -5,14 +5,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.kitapal.activities.MainActivity
 import com.example.kitapal.databinding.BookItemBinding
+import com.example.kitapal.databinding.BookmarkItemBinding
 import com.example.kitapal.models.Book
 
-class HomeAdapter(private val handleClick: (String) -> Unit): RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class BookmarkAdapter(private val handleClick: (String) -> Unit): RecyclerView.Adapter<BookmarkAdapter.ViewHolder>() {
 
-    private val books: ArrayList<Book> = arrayListOf()
+    private var books: ArrayList<Book> = arrayListOf()
+    private val favoriteDAO = MainActivity.database.getFavoriteDAO()
 
-    fun setBooks(booksList: List<Book>) {
+    fun setBooks(booksList: ArrayList<Book>) {
         val diffResult = DiffUtil.calculateDiff(BookDiffCallBack(books, booksList))
         books.clear()
         books.addAll(booksList)
@@ -20,7 +23,7 @@ class HomeAdapter(private val handleClick: (String) -> Unit): RecyclerView.Adapt
     }
 
     inner class ViewHolder(
-        private val binding: BookItemBinding
+        private val binding: BookmarkItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         private val context = binding.root.context
 
@@ -42,18 +45,12 @@ class HomeAdapter(private val handleClick: (String) -> Unit): RecyclerView.Adapt
                     }
                 }
                 authors.text = authorsStr
-                var categoriesStr: String = ""
-                if(book.volumeInfo.categories != null) {
-                    if (book.volumeInfo.categories.size != 1) {
-                        for (category in book.volumeInfo.categories) {
-                            categoriesStr = categoriesStr + category + ", "
-                        }
-                        categoriesStr = categoriesStr.slice(0..categoriesStr.length - 3)
-                    } else {
-                        categoriesStr = book.volumeInfo.categories.elementAt(0).toString()
-                    }
+                delete.setOnClickListener {
+                    var ids = favoriteDAO.findCartById(MainActivity.user.id)
+                    ids = ids.slice(0..ids.indexOf(book.id)-1) + ids.slice(ids.indexOf(book.id)+12..ids.length-1)
+                    favoriteDAO.updateCart(MainActivity.user.id, ids)
+                    setBooks(books.filter { it.id != book.id } as ArrayList<Book>)
                 }
-                categories.text = categoriesStr
                 root.setOnClickListener{
                     handleClick(book.id)
                 }
@@ -63,7 +60,7 @@ class HomeAdapter(private val handleClick: (String) -> Unit): RecyclerView.Adapt
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            BookItemBinding.inflate(
+            BookmarkItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent, false
             )

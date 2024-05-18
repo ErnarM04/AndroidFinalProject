@@ -9,7 +9,7 @@ import com.example.kitapal.databinding.BookItemBinding
 import com.example.kitapal.databinding.SearchViewBinding
 import com.example.kitapal.models.Book
 
-class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
+class SearchAdapter(private val handleClick: (String) -> Unit): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     private val books: ArrayList<Book> = arrayListOf()
 
@@ -56,6 +56,9 @@ class SearchAdapter(): RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
                     categoriesStr = categoriesStr.slice(0..categoriesStr.length-3)
                 } else {
                     categoriesStr = book.volumeInfo.categories.elementAt(0).toString()
+                }
+                root.setOnClickListener{
+                    handleClick(book.id)
                 }
             }
         }

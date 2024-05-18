@@ -1,8 +1,8 @@
-package com.example.kitapal
+package com.example.kitapal.activities
 
-import FirstFragment
-import SecondFragment
-import ThirdFragment
+import com.example.kitapal.fragments.FirstFragment
+import com.example.kitapal.fragments.SecondFragment
+import com.example.kitapal.fragments.ThirdFragment
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.room.Room
-import androidx.room.migration.Migration
+import com.example.kitapal.R
 import com.example.kitapal.database.KitapDB
 import com.example.kitapal.models.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -50,10 +50,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val firstFragment=FirstFragment()
-        val secondFragment=SecondFragment()
-        val thirdFragment=ThirdFragment()
-        val loginActivity=LoginActivity()
+        val firstFragment= FirstFragment()
+        val secondFragment= SecondFragment()
+        val thirdFragment= ThirdFragment()
+        val loginActivity= LoginActivity()
 
         setCurrentFragment(firstFragment)
 
@@ -61,8 +61,8 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.home->setCurrentFragment(firstFragment)
-                R.id.favorites->setCurrentFragment(secondFragment)
+                R.id.home ->setCurrentFragment(firstFragment)
+                R.id.favorites ->setCurrentFragment(secondFragment)
                 R.id.profile -> {
                     if (loggedIn) {
                         setCurrentFragment(thirdFragment)

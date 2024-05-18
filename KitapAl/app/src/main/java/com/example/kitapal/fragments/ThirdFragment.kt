@@ -1,3 +1,5 @@
+package com.example.kitapal.fragments
+
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import com.example.kitapal.MainActivity
+import com.example.kitapal.activities.MainActivity
 import com.example.kitapal.R
 import com.example.kitapal.databinding.FragmentThirdBinding
 import com.example.kitapal.models.User
